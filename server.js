@@ -25,13 +25,10 @@ app
   .use(errorHandler)
   .use(notFound)
 
-start()
+connectDb(`${process.env.MONGO_URI}/${appName}`)
+  .then(start)
+  .catch(err => console.log(`Error connecting to database: ${err.message}`))
 
-async function start() {
-  try {
-    await connectDb(`${process.env.MONGO_URI}/${appName}`)
-    app.listen(port, () => console.log(`${appName} server is listening on port ${port}...`))
-  } catch (err) {
-    console.error(`Error connecting to database: ${err.message}`)
-  }
+function start() {
+  app.listen(port, () => console.log(`${appName} server is listening on port ${port}...`))
 }

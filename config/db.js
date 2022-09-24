@@ -1,13 +1,10 @@
 import mongoose from 'mongoose'
 
-const connectDb = (dbUrl) => {
-  mongoose.connect(
-    dbUrl, 
-    {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    }
-  )
+const connectDb = async (dbUrl) => {
+  mongoose.connect(dbUrl, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
 }
 
 export default connectDb
